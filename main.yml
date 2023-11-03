@@ -1,0 +1,10 @@
+- hosts: all
+  # gather_facts: no
+  # become: yes
+
+  vars_files:
+    - default.config.yml
+
+  tasks:
+    - name: Postman
+      import_tasks: playbooks/applications/postman.yml

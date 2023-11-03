@@ -1,0 +1,30 @@
+- name: Check if Postman is installed
+  stat:
+    path: /Applications/Postman.app
+  register: postman_installed
+  ignore_errors: yes
+
+- name: Download Postman
+  get_url:
+    url: "https://dl.pstmn.io/download/latest/osx"
+    dest: "{{ ansible_env.HOME }}/Downloads/Postman.zip"
+  when: postman_installed.stat.exists == False
+
+- name: Unzip Postman
+  command: unzip "{{ ansible_env.HOME }}/Downloads/Postman.zip" -d /Applications/
+  args:
+    creates: /Applications/Postman.app
+  when: postman_installed.stat.exists == False
+  ignore_errors: yes
+
+- name: Cleanup
+  file:
+    path: "{{ ansible_env.HOME }}/Downloads/Postman.zip"
+    state: absent
+  when: postman_installed.stat.exists == False and application.cleanup
+
+- name: Launch Postman
+  command: open -a Postman
+  async: 0
+  poll: 0
+  when: application.launch
