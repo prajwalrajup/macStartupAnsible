@@ -1,0 +1,30 @@
+- name: Check if Docker is installed
+  stat:
+    path: /Applications/Docker.app
+  register: docker_installed
+  ignore_errors: yes
+
+- name: Download Docker Desktop
+  get_url:
+    url: "https://desktop.docker.com/mac/stable/Docker.dmg"
+    dest: "{{ ansible_env.HOME }}/Downloads/Docker.dmg"
+  changed_when: false
+  when: docker_installed.stat.exists == False
+
+- name: Mount the Docker Desktop DMG
+  command: hdiutil attach "{{ ansible_env.HOME }}/Downloads/Docker.dmg"
+  when: docker_installed.stat.exists == False
+
+- name: Copy Docker.app to the Applications folder
+  command: cp -R "/Volumes/Docker/Docker.app" /Applications/
+  when: docker_installed.stat.exists == False
+
+- name: Unmount the Docker Desktop DMG
+  command: hdiutil detach "/Volumes/Docker"
+  when: docker_installed.stat.exists == False
+
+- name: Launch Docker
+  command: open -a Docker
+  async: 0
+  poll: 0
+  when: application.launch

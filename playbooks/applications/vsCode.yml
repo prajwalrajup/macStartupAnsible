@@ -1,0 +1,23 @@
+- name: Check if VS code is installed
+  stat:
+    path: /Applications/Visual Studio Code.app
+  register: vsCode_installed
+  ignore_errors: yes
+
+- name: Install Visual Studio Code with Homebrew
+  homebrew_cask:
+    name: visual-studio-code
+    state: present
+  when: vsCode_installed.stat.exists == False
+
+- name: Copy VS code settings
+  copy:
+    src: ../../configFIles/vs code/settings.json
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+  when: vsCode_installed.stat.exists == False
+
+- name: Launch Visual Studio Code
+  command: open -a "Visual Studio Code"
+  async: 0
+  poll: 0
+  when: application.launch  

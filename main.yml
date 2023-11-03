@@ -8,3 +8,18 @@
   tasks:
     - name: Postman
       import_tasks: playbooks/applications/postman.yml
+    
+    - name: vs Code
+      import_tasks: playbooks/applications/vsCode.yml
+
+    - name: iterm 
+      import_tasks: playbooks/applications/iterm.yml
+
+    - name: tablepluse
+      import_tasks: playbooks/applications/tablepluse.yml
+
+    - name: docker
+      import_tasks: playbooks/applications/docker.yml
+
+    - name: set mac settings
+      import_tasks: playbooks/applications/macSettings.yml

@@ -1,0 +1,17 @@
+- name: Check if tablepluse is installed
+  stat:
+    path: /Applications/TablePlus.app
+  register: tablepluse_installed
+  ignore_errors: yes
+
+- name: Install tablepluse with Homebrew
+  homebrew_cask:
+    name: tableplus
+    state: present
+  when: tablepluse_installed.stat.exists == False
+
+- name: Launch Visual Studio Code
+  command: open -a TablePlus
+  async: 0
+  poll: 0
+  when: application.launch

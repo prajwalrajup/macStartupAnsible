@@ -1,0 +1,17 @@
+- name: Check if iTerm 2 is installed
+  stat:
+    path: /Applications/iTerm.app
+  register: iTerm_installed
+  ignore_errors: yes
+
+- name: Install iTerm2 with Homebrew
+  homebrew_cask:
+    name: iterm2
+    state: present
+  when: iTerm_installed.stat.exists == False
+
+- name: Launch Visual Studio Code
+  command: open -a iTerm
+  async: 0
+  poll: 0
+  when: application.launch
