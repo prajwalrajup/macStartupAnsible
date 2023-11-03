@@ -1,0 +1,42 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "terminal.integrated.shellIntegration.enabled": false,
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "files.autoSave": "onFocusChange",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "git.enableSmartCommit": true,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "python": true,
+        "typescriptreact": true
+    },
+    "workbench.editorLargeFileConfirmation": 100,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.zoomLevel": 1,
+    "workbench.colorCustomizations": {},
+    "git.confirmSync": false,
+    "docwriter.custom.author": "Prajwal Raju P",
+    "docwriter.hotkey.mac": "⌥ + .",
+    "editor.lineNumbers": "relative"
+}
