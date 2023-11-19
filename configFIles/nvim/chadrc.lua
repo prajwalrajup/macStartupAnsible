@@ -1,6 +1,7 @@
 ---@type ChadrcConfig
 local M = {}
 
+-- Define the theme
 M.ui = { theme = 'oxocarbon' }
 
 -- Define key mappings
@@ -11,5 +12,10 @@ end
 
 -- Call the function to set up key bindings
 setup_keybindings()
+
+M.plugins = "custom.plugins"
+
+-- check core.mappings for table structure
+M.mappings = require "custom.mappings"
 
 return M

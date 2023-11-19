@@ -1,0 +1,29 @@
+- name: Install zsh4human
+  shell:
+    cmd: 
+      - cp ../../configFIles/zsh/.p10k.zsh {{ ansible_env.HOME }}/.p10k.zsh
+      - cp ../../configFIles/zsh/.zsh_history {{ ansible_env.HOME }}/.zsh_history
+      - cp ../../configFIles/zsh/.zshenv {{ ansible_env.HOME }}/.zshenv
+      - cp ../../configFIles/zsh/.zshrc {{ ansible_env.HOME }}/.zshrc
+
+
+- name: Install neovim
+  shell:
+    cmd:
+      - 
+
+3.  instal neovim
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz /Applications
+tar xzf /Applications/nvim-macos.tar.gz /Applications
+
+4. install node 
+brew install node
+
+install ripgrep
+brew install ripgrep
+
+5. install nvchad
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && /Applications/nvim-macos/bin/nvim
+
+copy chadrc to  ~/.config/nvim/lua/custom/chadrc.lua
+

@@ -38,5 +38,11 @@
     "git.confirmSync": false,
     "docwriter.custom.author": "Prajwal Raju P",
     "docwriter.hotkey.mac": "⌥ + .",
-    "editor.lineNumbers": "relative"
+    "editor.lineNumbers": "relative",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ]
 }
