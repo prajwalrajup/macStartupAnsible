@@ -6,21 +6,27 @@ if [[ $# -ge 1 && "$1" != -* ]]; then
    shift
 fi
 
+# Check if Service is empty
+if [ -z "$Service" ]; then
+      echo "Error: Service name is required"
+      exit 1
+fi
+
 # Now parse options like -n
 while getopts ":n:" option; do
    case $option in
       n) 
-         Namespace=$OPTARG;;
+         nameSpace=$OPTARG;;
      \?)
          echo "Error: Invalid option"
          exit;;
    esac
 done
 
-POD_NAMES=$(kubectl get pods -n $Namespace -l app=$Service -o jsonpath='{.items[*].metadata.name}')
-POD_ARRAY=($POD_NAMES)
+podNames=$(kubectl get pods -n $nameSpace -l app=$Service -o jsonpath='{.items[*].metadata.name}')
+podArray=($podNames)
 
 # Iterate over the pod names
-for POD_NAME in "${POD_ARRAY[@]}"; do
-  kubectl logs $POD_NAME -n $Namespace
+for podName in "${podArray[@]}"; do
+  kubectl logs $podName -n $nameSpace
 done
